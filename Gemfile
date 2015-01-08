@@ -31,4 +31,8 @@ gem 'spring',      group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+group :production do
+  gem 'capistrano', github: 'capistrano/capistrano', ref: '96a16'
+  gem 'unicorn'
+end
 

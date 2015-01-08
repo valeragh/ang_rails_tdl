@@ -2,9 +2,9 @@ angular.module('todoList')
   .controller('TasksCtrl', [
   '$scope',
   'projects',
-  'post',
-  function($scope, projects, post){
-    $scope.post = post;
+  'project',
+  function($scope, projects, project){
+    $scope.project = project;
     $scope.addTask = function(){
       if($scope.name === ''){ return; }
       projects.addTask(project.id, {

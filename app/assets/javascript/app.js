@@ -14,6 +14,8 @@ function($stateProvider, $urlRouterProvider) {
         postPromise: ['projects', function(projects){
           return projects.getAll();
        }]
+
+
       }
     })
     .state('tasks', {
@@ -48,11 +50,14 @@ function($stateProvider, $urlRouterProvider) {
   };
 
   o.addTask = function(id, task){
-    return $http.post('/projects/' + id + '/tasks.json', task);
+    return $http.post('/projects/' + id + '/tasks.json', task).success(function(data){
+      o.projects.tasks.push(data);
+    });
   };
 
   return o;
 }])
+
 
 
 
