@@ -14,6 +14,9 @@ gem 'jbuilder', '~> 2.0'
 gem 'angular-rails-templates'
 gem 'angular_rails_csrf'
 gem 'devise', '~> 3.4.0'
+group :development do
+  gem 'guard-livereload', require: false
+end
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',        group: :doc
 

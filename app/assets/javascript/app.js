@@ -11,8 +11,9 @@ function($stateProvider, $urlRouterProvider) {
       templateUrl: 'home/_home.html',
       controller: 'MainCtrl',
       resolve: {
-        postPromise: ['projects', function(projects){
+        postPromise: ['$stateParams', 'projects', function($stateParams, projects){
           return projects.getAll();
+          return projects.get($stateParams.id);
        }]
 
 
