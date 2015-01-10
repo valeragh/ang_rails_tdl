@@ -11,9 +11,8 @@ function($stateProvider, $urlRouterProvider) {
       templateUrl: 'home/_home.html',
       controller: 'MainCtrl',
       resolve: {
-        postPromise: ['$stateParams', 'projects', function($stateParams, projects){
+        postPromise: ['projects', function(projects){
           return projects.getAll();
-          return projects.get($stateParams.id);
        }]
 
 
@@ -23,7 +22,7 @@ function($stateProvider, $urlRouterProvider) {
       url: '/tasks/{id}',
       templateUrl: 'tasks/_tasks.html',
       controller: 'TasksCtrl'
-    })
+    });
 }])
 
 
@@ -52,7 +51,7 @@ function($stateProvider, $urlRouterProvider) {
 
   o.addTask = function(id, task){
     return $http.post('/projects/' + id + '/tasks.json', task).success(function(data){
-      o.projects.tasks.push(data);
+      o.projects.push(data);
     });
   };
 

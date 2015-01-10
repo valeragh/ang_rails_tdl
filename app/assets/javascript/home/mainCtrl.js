@@ -9,17 +9,17 @@ angular.module('todoList')
     $scope.addProject = function(){
       projects.create({
         title: 'New Projects',
-        tasks: '[]',
+        tasks: '[]'
         });
       $scope.title = '';
     };
 
     $scope.addTask = function(){
       if($scope.name === ''){ return; }
-      projects.addTask(projects.id, {
+      projects.addTask("#{@project_id}", {
         name: $scope.name,
         status: 'true',
-        rang: 1,
+        rang: 1
       });
       $scope.name = '';
     };
