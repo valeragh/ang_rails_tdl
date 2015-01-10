@@ -18,10 +18,25 @@ function($stateProvider, $urlRouterProvider) {
 
       }
     })
+      .state('projects', {
+        url: '/projects/{id}',
+        templateUrl: 'projects/_projects.html',
+        controller: 'ProjectsCtrl',
+        resolve: {
+          project: ['$stateParams', 'projects', function($stateParams, projects) {
+            return projects.get($stateParams.id);
+          }]
+        }
+    })
     .state('tasks', {
       url: '/tasks/{id}',
       templateUrl: 'tasks/_tasks.html',
-      controller: 'TasksCtrl'
+      controller: 'TasksCtrl',
+      resorve: {
+        task: ['$stateParams', 'tasks', function($stateParams, tasks) {
+            return tasks.getTask($stateParams.id);
+          }]
+      }
     });
 }])
 
@@ -49,10 +64,18 @@ function($stateProvider, $urlRouterProvider) {
     });
   };
 
-  o.addTask = function(id, task){
-    return $http.post('/projects/' + id + '/tasks.json', task).success(function(data){
-      o.projects.push(data);
+  o.getTask = function(id) {
+    return $http.get('/tasks/' + id).then(function(res){
+      return res.data;
     });
+  };
+
+  o.addTask = function(id, task){
+    return $http.post('/projects/' + id + '/tasks.json', task);
+  };
+
+  o.addComment = function(id, comment){
+    return $http.post('/tasks/' + id + '/comments.json', comment);
   };
 
   return o;

@@ -16,7 +16,7 @@ angular.module('todoList')
 
     $scope.addTask = function(){
       if($scope.name === ''){ return; }
-      projects.addTask("#{@project_id}", {
+      projects.addTask(project, {
         name: $scope.name,
         status: 'true',
         rang: 1

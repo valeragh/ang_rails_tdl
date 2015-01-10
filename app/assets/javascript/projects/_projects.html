@@ -1,15 +1,9 @@
-<header class="page-header">
-  <h1> Simple TODO List</h1>
-  <h2> From Ruby Garage</h2>
-</header>
-
-<div ng-repeat="project in projects">
   <div class="panel panel-default">
     <div class="panel-heading row">
-      <a class="panel-title col-md-12 text-left" href="#/projects/{{project.id}}">{{project.title}}</a>
+      <h4 class="panel-title col-md-12 text-left">{{project.title}}
       <a class="col-sm-2 icon-add pull-right"></a>
       <a class="col-sm-2 icon-delete pull-right"></a>
-
+      </h4>
     </div>
     <ul class="list-group">
       <li class="row list-group-item add">
@@ -24,11 +18,10 @@
     <ul class="list-group" ng-repeat="task in project.tasks | orderBy: '-rang'">
       <li class="row list-group-item">
         <input type="checkbox" class="col-sm-2" ng-model="task.status" />
-        <a class="col-sm-2 text-left" ng-model="task.name" href="#/tasks/{{$index}}">{{task.name}}</a>
+        <a class="col-sm-2 text-left" ng-model="task.name" href="#/tasks/{{task.id}}">{{task.name}}</a>
         <a class="col-sm-2 icon-add pull-right" ng-href="#"></a>
         <a class="col-sm-2 icon-delete pull-right" ng-href="#"></a>
       </li>
     </ul>
   </div>
 </div>
-<button ng-click="addProject()" class="btn btn-success">Add Project</button>
